@@ -1,14 +1,12 @@
 'use client'
-import {useRouter} from 'next/navigation'
-
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';  // npm install react-hook-form
-import { loginUser } from '@/app/utils/user'
+import { loginUser } from '@/app/utils/user';
 import Link from 'next/link';
 
 export default function LoginForm() {
-    const { register, formState: { errors }, handleSubmit } = useForm()
-
-    const router = useRouter()
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    const router = useRouter();
 
     const onSubmit = async (data) => {
         try {
@@ -24,7 +22,6 @@ export default function LoginForm() {
             alert(`Usuario y/o Contraseña invalidos`);
         }
     };
-    
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
@@ -69,11 +66,11 @@ export default function LoginForm() {
                         </div>
                     </div>
                 </div>
-                <input className="mt-4 w-full" type="submit" />
+                <input className="mt-4 w-full bg-blue-500 text-white p-2 rounded-md cursor-pointer" type="submit" />
             </div>
             <div className='mt-6 text-white'>
                 <Link href="/register">¿No tienes cuenta? <span className='text-blue-500'>Regístrate</span></Link>
             </div>
         </form>
-    )
+    );
 }

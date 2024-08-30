@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function Navbar() {
     const router = useRouter();
@@ -15,7 +16,7 @@ export default function Navbar() {
         } else {
             setIsLogged(false); // No muestra el navbar si no está logueado
         }
-    }, [router]);
+    }, [router.asPath]);  // Dependiendo de la ruta, esto se asegura de que el navbar se actualice correctamente
 
     // Función para cerrar sesión
     const handleLogout = () => {
@@ -29,20 +30,21 @@ export default function Navbar() {
     }
 
     return (
-        <nav className="navbar">
-            <h1>
-                <img src="/logo.svg" alt="Logo" />
-                My Birds
-            </h1>
-            <ul>
+        <nav className="nav-container">
+            <div className="logo-container">
+                <a href="/Home">
+                    <Image src="/images/sin_data.jpeg" alt="Logo" width={50} height={50} />
+                </a>
+            </div>
+            <ul className="nav-list">
                 <li>
                     <a href="/Clients">
-                        <span className="icon">🕊️</span> Clientes
+                        <span role="img" aria-label="clients">🕊️</span> Clientes
                     </a>
                 </li>
                 <li>
-                    <button onClick={handleLogout}>
-                        <span className="icon">🚪</span> Cerrar sesión
+                    <button onClick={handleLogout} className="logout-btn">
+                        <span role="img" aria-label="logout">🚪</span> Cerrar sesión
                     </button>
                 </li>
             </ul>

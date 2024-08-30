@@ -1,69 +1,55 @@
 'use server'
 
+const makeRequest = async (url, method, data, token = null) => {
+    /*console.log('URL:', url);  // Debugging para ver la URL completa
+    console.log('method:', method);
+    console.log('data:');
+    console.log(data);*/
+
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+        };
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        const response = await fetch(url, {
+            method,
+            headers,
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.json();
+            throw new Error(`Network response was not ok: ${errorBody.message || response.statusText}`);
+        }
+
+        const dataRes = await response.json();
+        return dataRes;
+
+    } catch (error) {
+        console.error(`Failed to ${method} request at ${url}:`, error.message || error);
+        throw new Error(`Failed to ${method} request.`);
+    }
+};
+
+// Función para registrar usuario
 async function createUser(data) {
-    //console.log(data)
-    try {
-        const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}${process.env.USERS}register`;
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const dataRes = await response.json();
-        return (dataRes);
-    } catch (error) {
-        console.error('Failed to register user:', error)
-        throw new Error('Failed to register user.')
-    }
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}${process.env.USERS}register`;
+    return await makeRequest(url, 'POST', data);
 }
 
+// Función para validar usuario
 async function validateUser(token, data) {
-    try {
-        const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}${process.env.USERS}validation`;
-        const response = await fetch(url, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(data)
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const dataRes = await response.json();
-        return (dataRes);
-    } catch (error) {
-        console.error('Failed to match code:', error)
-        throw new Error('Failed to match code.')
-    }
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}${process.env.USERS}validation`;
+    return await makeRequest(url, 'PUT', data, token);
 }
 
+// Función para login de usuario
 async function loginUser(data) {
-    try {
-        const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}${process.env.USERS}login`;
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const dataRes = await response.json();
-        return (dataRes);
-    } catch (error) {
-        console.error('Failed to login user:', error)
-        throw new Error('Failed to login user.')
-    }
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}${process.env.USERS}login`;
+    return await makeRequest(url, 'POST', data);
 }
 
-export { createUser, validateUser, loginUser }
-
+export { createUser, validateUser, loginUser };

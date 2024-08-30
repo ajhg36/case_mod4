@@ -11,14 +11,20 @@ export default function LoginForm() {
     const router = useRouter()
 
     const onSubmit = async (data) => {
-        const res = await loginUser(data)
-        if(res.token) {
-            localStorage.setItem('jwt', res.token)
-            router.push('/about')
-        } else {
-            throw new Error('Failed to login user.')
+        try {
+            const res = await loginUser(data);
+            if (res.token) {
+                localStorage.setItem('jwtAlex', res.token);
+                router.push('/Home');
+            } else {
+                throw new Error('Login failed: Token not found in response');
+            }
+        } catch (error) {
+            console.error('Error Login:', error.message || error);
+            alert(`Usuario y/o Contraseña invalidos`);
         }
-    }
+    };
+    
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">

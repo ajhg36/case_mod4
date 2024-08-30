@@ -1,36 +1,51 @@
-import Link from 'next/link'
-import './Navbar.css'
+'use client'
+
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
-    // <nav className="navbar py-5">
-    //  <nav className='bg-slate-400 mb-4 flex justify-between items-center px-20 p-3 font-bold text-black'>
+    const router = useRouter();
+    const [isLogged, setIsLogged] = useState(false);
+
+    // Verificar si el usuario está logueado
+    useEffect(() => {
+        const token = localStorage.getItem('jwtAlex');
+        if (token) {
+            setIsLogged(true);
+        } else {
+            setIsLogged(false); // No muestra el navbar si no está logueado
+        }
+    }, [router]);
+
+    // Función para cerrar sesión
+    const handleLogout = () => {
+        localStorage.removeItem('jwtAlex'); // Limpiar token del localStorage
+        setIsLogged(false);
+        router.push('/login'); // Redirigir a la página de login
+    };
+
+    if (!isLogged) {
+        return null; // No mostrar navbar si no está logueado
+    }
+
     return (
-        <nav className="navbar py-5">
-            <Link href="/">
-                Home
-            </Link>
+        <nav className="navbar">
+            <h1>
+                <img src="/logo.svg" alt="Logo" />
+                My Birds
+            </h1>
             <ul>
                 <li>
-                    <Link href="/about" >
-                        About
-                    </Link>
+                    <a href="/Clients">
+                        <span className="icon">🕊️</span> Clientes
+                    </a>
                 </li>
                 <li>
-                    <Link href="/posts" >
-                        Posts
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/register" >
-                        Sign Up
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/login" >
-                        Sign In
-                    </Link>
+                    <button onClick={handleLogout}>
+                        <span className="icon">🚪</span> Cerrar sesión
+                    </button>
                 </li>
             </ul>
         </nav>
-    )
+    );
 }

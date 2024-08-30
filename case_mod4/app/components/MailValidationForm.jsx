@@ -10,11 +10,11 @@ export default function RegisterForm() {
     const router = useRouter()
 
     const onSubmit = async (data) => {
-        const token = localStorage.getItem('jwt')
+        const token = localStorage.getItem('jwtAlex')
         const res = await validateUser(token, data)
         //console.log(res)
         if(res.acknowledged) {
-            router.push('/about')
+            router.push('/Home')
         } else {
             throw new Error('Failed to match code.')
         }

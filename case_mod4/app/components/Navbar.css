@@ -1,13 +1,63 @@
 .navbar {
-    background: #101010;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 4rem;
-    align-items: center;
- }
- .navbar ul {
+   background: #6A1B9A; /* Un color púrpura similar al de la imagen */
    display: flex;
- gap: 1rem; }
- .navbar ul li {
-    list-style: none;
- }
+   justify-content: flex-start; /* Alinear el contenido a la izquierda */
+   padding: 1rem;
+   align-items: center;
+   color: white; /* Color de texto en blanco */
+   height: 100vh; /* Altura completa para que sea como un sidebar */
+   width: 250px; /* Ancho del navbar */
+   position: fixed; /* Para que esté siempre visible en el lado izquierdo */
+}
+
+.navbar ul {
+   display: flex;
+   flex-direction: column; /* Para organizar en una columna */
+   gap: 1rem;
+   padding-left: 0;
+   margin: 0;
+   width: 100%;
+}
+
+.navbar ul li {
+   list-style: none;
+   display: flex;
+   align-items: center; /* Alinear los íconos y el texto */
+   padding: 10px 15px;
+   border-radius: 8px;
+   transition: background 0.3s ease;
+}
+
+.navbar ul li:hover {
+   background: #7E57C2; /* Color de hover para indicar la opción activa */
+}
+
+.navbar ul li a {
+   text-decoration: none;
+   color: white;
+   font-size: 1rem;
+   display: flex;
+   align-items: center;
+}
+
+.navbar ul li a .icon {
+   margin-right: 15px; /* Espacio entre el icono y el texto */
+}
+
+.navbar ul li.active {
+   background: #512DA8; /* Color de la opción activa */
+}
+
+.navbar h1 {
+   font-size: 1.5rem;
+   color: white;
+   margin-bottom: 2rem;
+   display: flex;
+   align-items: center;
+}
+
+.navbar h1 img {
+   margin-right: 10px;
+   width: 30px; /* Ajustar el tamaño del logo */
+   height: auto;
+}

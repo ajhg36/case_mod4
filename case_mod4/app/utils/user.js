@@ -1,8 +1,9 @@
 'use server'
 
 async function createUser(data) {
+    //console.log(data)
     try {
-        const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/user/register`;
+        const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}${process.env.USERS}register`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -23,7 +24,7 @@ async function createUser(data) {
 
 async function validateUser(token, data) {
     try {
-        const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/user/validation`;
+        const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}${process.env.USERS}validation`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -45,7 +46,7 @@ async function validateUser(token, data) {
 
 async function loginUser(data) {
     try {
-        const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/user/login`;
+        const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}${process.env.USERS}login`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {

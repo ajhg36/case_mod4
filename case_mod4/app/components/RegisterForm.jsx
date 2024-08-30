@@ -1,6 +1,5 @@
 'use client'
 import {useRouter} from 'next/navigation'
-
 import { useForm } from 'react-hook-form';  // npm install react-hook-form
 import { createUser } from '@/app/utils/user'
 import Link from 'next/link';
@@ -12,6 +11,7 @@ export default function RegisterForm() {
 
     const onSubmit = async (data) => {
         const res = await createUser(data)
+        //console.log(res)
         if(res.token) {
             localStorage.setItem('jwt', res.token)
             router.push('/validation')

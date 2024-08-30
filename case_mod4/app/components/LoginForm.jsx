@@ -37,7 +37,7 @@ export default function LoginForm() {
                         </label>
                         <div className="relative">
                             <input
-                                className="peer block w-full rounded-md border border-gray-200 py-[9px] text-sm outline-2 text-gray-500"
+                                className="peer block w-full rounded-md border border-gray-200 py-[9px] text-black outline-2"
                                 type="email"
                                 id="email"
                                 {...register('email', { required: true, maxLength: 30 })}
@@ -54,7 +54,7 @@ export default function LoginForm() {
                         </label>
                         <div className="relative">
                             <input
-                                className="peer block w-full rounded-md border border-gray-200 py-[9px] text-sm outline-2text-gray-500"
+                                className="peer block w-full rounded-md border border-gray-200 py-[9px] text-black outline-2"
                                 type="password"
                                 id="password"
                                 {...register('password', { required: true, minLength: 8 })}
@@ -66,7 +66,7 @@ export default function LoginForm() {
                 <input className="mt-4 w-full" type="submit" />
             </div>
             <div className='mt-6 text-white'>
-                <Link href="/login">¿Ya tienes cuenta? <span className='text-blue-500'>Accede</span></Link>
+                <Link href="/register">¿No tienes cuenta? <span className='text-blue-500'>Regístrate</span></Link>
             </div>
         </form>
     )

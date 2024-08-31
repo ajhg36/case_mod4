@@ -96,6 +96,10 @@ body {
   align-items: center;
   padding: 2rem;
   background-color: #f9f9f9;
+  max-height: 80vh; /* Limitar la altura máxima del contenedor */
+  overflow-y: auto; /* Hacer que el contenido sea desplazable */
+  width: 100%;
+  margin-top: 6rem; /* Incrementar el margen superior para más separación */
 }
 
 .create-client {
@@ -103,6 +107,10 @@ body {
   justify-content: flex-end;
   width: 100%;
   padding: 1rem 0;
+  background-color: #f9f9f9;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .create-client-btn {
@@ -126,6 +134,8 @@ body {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+  overflow-y: auto; /* Asegura que la lista sea desplazable */
+  max-height: 70vh; /* Limita la altura de la lista para que el botón sea visible */
 }
 
 .client-list li {
@@ -191,11 +201,12 @@ body {
 .popup input[type="text"],
 .popup input[type="number"] {
   width: 100%;
-  padding: 8px;
+  padding: 10px; /* Incrementa el padding para dar más espacio dentro del input */
   margin-top: 4px;
   margin-bottom: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total del input */
 }
 
 .save-btn, .close-btn {
@@ -235,28 +246,48 @@ body {
   margin-bottom: 10px;
 }
 
-.save-btn, .close-btn {
-  padding: 10px 20px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.save-btn {
+.success-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
   background-color: #4CAF50;
   color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-size: 16px;
 }
 
-.close-btn {
+.delete-client-btn {
   background-color: #f44336;
   color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem; /* Agrega un poco de espacio superior */
+  display: block; /* Asegura que el botón ocupe toda la línea */
 }
 
-.save-btn:hover {
-  background-color: #45a049;
+.delete-client-btn:hover {
+  background-color: #e53935;
 }
 
-.close-btn:hover {
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* Separación superior para evitar que se vea como texto */
+}
+
+.delete-btn:hover {
   background-color: #e53935;
 }

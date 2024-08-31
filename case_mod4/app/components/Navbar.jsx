@@ -48,6 +48,16 @@ export default function Navbar() {
                     </a>
                 </li>
                 <li>
+                    <a href="/project_all">
+                        <span role="img" aria-label="all projects">🕊️</span>All Projects
+                    </a>
+                </li>
+                <li>
+                    <a href="/delivery">
+                        <span role="img" aria-label="delivery">🕊️</span>Delivery
+                    </a>
+                </li>
+                <li>
                     <button onClick={handleLogout} className="logout-btn">
                         <span role="img" aria-label="logout">🚪</span> Cerrar sesión
                     </button>

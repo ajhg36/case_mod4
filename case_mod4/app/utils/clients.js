@@ -34,6 +34,12 @@ const makeRequest = async (url, method, data = null, token = null) => {
     }
 };
 
+// Función para obtener todos los clientes
+async function getClients(token) {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN_CLIENTS}`;
+    return await makeRequest(url, 'GET', null, token);
+}
+
 // Función para obtener un cliente por ID
 async function getClient(token, clientId) {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN_CLIENTS}/${clientId}`;
@@ -58,4 +64,4 @@ async function createClient(token, data) {
     return await makeRequest(url, 'POST', data, token);
 }
 
-export { getClient, updateClient, deleteClient, createClient };
+export { getClients, getClient, updateClient, deleteClient, createClient };
